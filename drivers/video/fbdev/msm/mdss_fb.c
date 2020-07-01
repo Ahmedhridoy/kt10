@@ -573,8 +573,8 @@ static void __mdss_fb_idle_notify_work(struct work_struct *work)
 
 	/* Notify idle-ness here */
 	pr_debug("Idle timeout %dms expired!\n", mfd->idle_time);
-
 	mfd->idle_state = MDSS_FB_IDLE;
+
 	/*
 	 * idle_notify node events are used to reduce MDP load when idle,
 	 * this is not needed for command mode panels.
@@ -3675,13 +3675,17 @@ static int __mdss_fb_sync_buf_done_callback(struct notifier_block *p,
 
 	switch (event) {
 	case MDP_NOTIFY_FRAME_BEGIN:
-		if (mfd->idle_time && !mod_delayed_work(system_wq,
+		if (mfd->idle_time) {
+			if (!mod_delayed_work(system_wq,
 					&mfd->idle_notify_work,
 					msecs_to_jiffies(WAIT_DISP_OP_TIMEOUT)))
-			pr_debug("fb%d: start idle delayed work\n",
+				pr_debug("fb%d: start idle delayed work\n",
 					mfd->index);
+			mfd->idle_state = MDSS_FB_IDLE_TIMER_RUNNING;
+		} else {
+			mfd->idle_state = MDSS_FB_IDLE;
+		}
 
-		mfd->idle_state = MDSS_FB_NOT_IDLE;
 		break;
 	case MDP_NOTIFY_FRAME_READY:
 		if (sync_pt_data->async_wait_fences &&
