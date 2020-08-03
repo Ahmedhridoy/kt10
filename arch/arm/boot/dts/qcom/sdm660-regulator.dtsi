@@ -745,15 +745,15 @@
 
 					/* Speed bin 4 */
 					<2 3 4 5 8>;
-        /* Ceiling: -100mv except -80mv on last */
-        /* Floor: -100mv except -80mv on last */
+        /* Ceiling: -100mv except -80mv on last 2 */
+        /* Floor: -100mv except -80mv on last 2 */
 				qcom,cpr-voltage-ceiling =
 					< 624000  624000  624000  688000  768000
-					  968000  968000  998000>;
+					  968000  988000  998000>;
 
 				qcom,cpr-voltage-floor =
 					<488000  488000  496000  552000  612000
-					 644000  684000  764000>;
+					 644000  704000  764000>;
 
 				qcom,corner-frequencies =
 					/* Speed bin 0 */
