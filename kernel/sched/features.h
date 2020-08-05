@@ -3,7 +3,7 @@
  * them to run sooner, but does not allow tons of sleepers to
  * rip the spread apart.
  */
-SCHED_FEAT(GENTLE_FAIR_SLEEPERS, true)
+SCHED_FEAT(GENTLE_FAIR_SLEEPERS, false)
 
 /*
  * Place new tasks ahead so that they do not starve already running
@@ -81,14 +81,14 @@ SCHED_FEAT(UTIL_EST, true)
 #ifdef CONFIG_DEFAULT_USE_ENERGY_AWARE
 SCHED_FEAT(ENERGY_AWARE, true)
 #else
-SCHED_FEAT(ENERGY_AWARE, false)
+SCHED_FEAT(ENERGY_AWARE, true)
 #endif
 
 /*
  * Bias schedtune boosted tasks to higher capacity CPUs.
  * If disabled, no bias will be applied.
  */
-SCHED_FEAT(STUNE_BOOST_BIAS_BIG, true)
+SCHED_FEAT(STUNE_BOOST_BIAS_BIG, false)
 
 /*
  * Minimum capacity capping. Keep track of minimum capacity factor when
