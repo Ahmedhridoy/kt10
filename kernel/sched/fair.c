@@ -2630,7 +2630,8 @@ static void update_cfs_shares(struct sched_entity *se)
 
 	tg = cfs_rq->tg;
 
-#ifndef CONFIG_SMP
+#ifdef CONFIG_SMP
+#endif
 	if (likely(se->load.weight == tg->shares))
 		return;
 #endif
