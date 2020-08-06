@@ -1,10 +1,10 @@
 # Clean out folder
-rm -rf '/media/system/root1/android_kernel_sdm660_lavender/out'
+rm -rf '/media/system/root1/MengT_kernel_lavender/out'
 # Set defaults
-cd "/media/system/root1/android_kernel_sdm660_lavender"
+cd "/media/system/root1/MengT_kernel_lavender"
 wd=$(pwd)
 out=$wd/out
-BUILD="/media/system/root1/android_kernel_sdm660_lavender"
+BUILD="/media/system/root1/MengT_kernel_lavender"
 # Set kernel source workspace
 cd $BUILD
 # Export ARCH <arm, arm64, x86, x86_64>
@@ -37,5 +37,5 @@ DATE_END=$(date +"%s")
 DIFF=$(($DATE_END - $DATE_START))
 echo "Time: $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds."
 # mounting to browser
-cd "/media/system/root1/android_kernel_sdm660_lavender/out/arch/arm64/boot"
-python3 -m http.server 3399
+cd "/media/system/root1/MengT_kernel_lavender/out/arch/arm64/boot"
+python3 -m http.server 3400
